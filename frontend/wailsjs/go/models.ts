@@ -4,6 +4,7 @@ export namespace main {
 	    Path: string;
 	    Name: string;
 	    IsDir: boolean;
+	    Content: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new DirEntry(source);
@@ -14,10 +15,12 @@ export namespace main {
 	        this.Path = source["Path"];
 	        this.Name = source["Name"];
 	        this.IsDir = source["IsDir"];
+	        this.Content = source["Content"];
 	    }
 	}
 	export class ReturnValue {
 	    DirEntries: DirEntry[];
+	    SelectedNote: DirEntry;
 	    Error: string;
 	
 	    static createFrom(source: any = {}) {
@@ -27,6 +30,7 @@ export namespace main {
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.DirEntries = this.convertValues(source["DirEntries"], DirEntry);
+	        this.SelectedNote = this.convertValues(source["SelectedNote"], DirEntry);
 	        this.Error = source["Error"];
 	    }
 	

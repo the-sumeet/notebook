@@ -1,20 +1,26 @@
-<script>
+<script lang="ts">
     import { appState } from "../state.svelte";
     import CopyIcon from "./icons/CopyIcon.svelte";
     import DisablePreview from "./icons/DisablePreview.svelte";
     import DownloadIcon from "./icons/DownloadIcon.svelte";
     import EnablePreviewIcon from "./icons/EnablePreviewIcon.svelte";
+    
+    let noteName = $state("");
+
+    $effect(() => {
+        if (appState.selectedNote) {
+            noteName = appState.selectedNote.Name
+        } else {
+            noteName = ""
+        }
+    })
+
 </script>
 
 <div class="flex flex-col">
     <!-- Note title -->
     <div class="p-2 font-bold text-lg">
-        <p class="line-clamp-1">
-            lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
-            recusandae qui culpa nisi voluptates magnam aperiam mollitia, unde
-            nihil illum illo veritatis natus error, iste eos ad! Veritatis,
-            possimus magni.
-        </p>
+        <input type="text" class="rounded p-1 w-full placeholder:text-gray-500 outline-0" placeholder="Enter name for new note" value={noteName}>
     </div>
 
     <div class="flex p-2 gap-2 overflow-x-scroll justify-end">
@@ -24,8 +30,6 @@
         >
             <CopyIcon />
         </button>
-
-        
 
         {#if appState.preview}
         <button

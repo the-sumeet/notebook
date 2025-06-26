@@ -7,7 +7,7 @@ body {
 
 /* Palette: https://colorhunt.co/palette/222831393e4600adb5eeeeee */
 @theme {
-    --color-light: #fafbfc;
+    --color-light: #f1f1f1;
     --color-dark: #2b3137;
     --color-darker: #24292e;
 }

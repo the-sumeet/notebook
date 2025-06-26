@@ -4,6 +4,7 @@
     import "ace-builds/src-noconflict/mode-markdown"; // Markdown syntax support
     import { onMount, onDestroy } from "svelte";
     import { appState } from "../state.svelte";
+    import app from "../../src/main";
 
 
     let theme = "github";
@@ -13,13 +14,26 @@
     let editor: ace.Editor;
     let editorElement: HTMLElement;
 
+
+    $effect(() => {
+        if (appState.selectedNote != null) {
+            if (editor) {
+                editor.setValue(appState.selectedNote.Content, -1);
+            }
+        } else {
+            if (editor) {
+                editor.setValue("", -1);
+            }
+        }
+    });
+
     // Initialize editor
     onMount(async () => {
         editor = ace.edit(editorElement, {
             mode: `ace/mode/${mode}`,
             theme: `ace/theme/${theme}`,
             fontSize: `${fontSize}px`,
-            value: appState.mdContent,
+            // value: selectedFileContent,
         });
 
         // Sync with parent component

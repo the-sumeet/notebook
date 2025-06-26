@@ -2,12 +2,13 @@
 @plugin "@tailwindcss/typography";
 
 body {
-    @apply font-mono ;
+    @apply font-mono text-light;
 }
 
 /* Palette: https://colorhunt.co/palette/222831393e4600adb5eeeeee */
 @theme {
-    --color-light: #f1f1f1;
+    --color-lighter: #ffffff;
+    --color-light: #d1d1d1;
     --color-dark: #2b3137;
     --color-darker: #24292e;
 }

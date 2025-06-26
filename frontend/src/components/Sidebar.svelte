@@ -65,7 +65,7 @@
 </script>
 
 <div class="h-full flex flex-col">
-    <div class="flex-1 flex flex-col gap-4 bg-dark p-4 text-light">
+    <div class="flex-1 flex flex-col gap-4 bg-darker p-4 text-light">
         <!-- Back button -->
         <button
             onclick={goBack}
@@ -99,7 +99,7 @@
                         />
                     </svg>
                 {/if}
-                <p class="flex-1 break-all text-primary">{file.Name}</p>
+                <p class="flex-1 break-all text-primary hover:text-lighter">{file.Name}</p>
             </button>
         {/each}
     </div>

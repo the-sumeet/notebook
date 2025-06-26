@@ -65,12 +65,12 @@
 </script>
 
 <div class="h-full flex flex-col">
-    <div class="flex-1 flex flex-col gap-4 bg-darker p-4 text-light">
+    <div class="flex-1 flex flex-col gap-4 bg-darker p-4 text-light ">
         <!-- Back button -->
         <button
             onclick={goBack}
-            class="flex justify-start items-center gap-2 text-start mt-4 hover:text-white hover:cursor-pointer"
-            ><p class="flex-1 break-all text-primary">..</p></button
+            class="flex justify-start items-center gap-2 text-start mt-4  hover:cursor-pointer"
+            ><p class="flex-1 break-all text-primary hover:text-lighter">..</p></button
         >
 
         {#each files as file}

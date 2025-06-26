@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 body {
-    @apply font-mono text-light;
+    @apply font-mono text-dark;
 }
 
 /* Palette: https://colorhunt.co/palette/222831393e4600adb5eeeeee */

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { appState } from "../../src/state.svelte";
-    import Input from "./Input.svelte";
+  import Input from "./Input.svelte";
 
   let { modal }: { modal: Modal } = $props();
 </script>
@@ -56,18 +56,15 @@
           </div>
 
           {#if modal.input}
-          <Input input={modal.input}  />
+            <Input input={modal.input} />
           {/if}
-
         </div>
-        <div
-          class="flex mt-5 sm:mt-6 sm:gap-3"
-        >
+        <div class="flex mt-5 sm:mt-6 sm:gap-3">
           {#if modal.primaryTitle && modal.onPrimaryClick}
             <button
               onclick={modal.onPrimaryClick}
               type="button"
-              class="inline-flex w-full justify-center rounded-md bg-dark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-darker focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
+              class="inline-flex w-full justify-center rounded-md bg-dark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-darker focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:col-start-2"
               >{modal.primaryTitle}</button
             >
           {/if}

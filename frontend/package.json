@@ -22,7 +22,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "@tsconfig/svelte": "^5.0.4",
-    "ace-builds": "^1.40.0",
+    "ace-builds": "^1.43.0",
     "marked": "^15.0.8",
     "tailwindcss": "^4.1.4"
   }

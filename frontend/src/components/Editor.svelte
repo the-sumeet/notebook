@@ -6,14 +6,12 @@
     import { appState } from "../state.svelte";
     import app from "../../src/main";
 
-
     let theme = "github";
     let mode = "markdown";
     let fontSize = 14;
 
     let editor: ace.Editor;
     let editorElement: HTMLElement;
-
 
     $effect(() => {
         if (appState.selectedNote != null) {
@@ -39,6 +37,39 @@
         // Sync with parent component
         editor.session.on("change", () => {
             appState.mdContent = editor.getValue();
+        });
+
+        // Add copy/paste keyboard shortcuts
+        editor.commands.addCommand({
+            name: "copy",
+            bindKey: { win: "Ctrl-C", mac: "Cmd-C" },
+            exec: function (editor) {
+                const selectedText = editor.getSelectedText();
+                if (selectedText) {
+                    navigator.clipboard.writeText(selectedText);
+                } else {
+                    const currentLine = editor.session.getLine(
+                        editor.getCursorPosition().row,
+                    );
+                    navigator.clipboard.writeText(currentLine);
+                }
+            },
+        });
+
+        editor.commands.addCommand({
+            name: "paste",
+            bindKey: { win: "Ctrl-V", mac: "Cmd-V" },
+            exec: function (editor) {
+                navigator.clipboard
+                    .readText()
+                    .then((text) => {
+                        editor.insert(text);
+                    })
+                    .catch((err) => {
+                        console.error("Failed to read clipboard:", err);
+                    });
+                return true;
+            },
         });
 
         // Handle window resize

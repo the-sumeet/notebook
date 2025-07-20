@@ -45,7 +45,7 @@
       oninput={onUpdate}
       type={input.type}
       bind:value={inputValue}
-      class="block w-full rounded-md bg-white px-3 py-1.5 text-base outline outline-1 -outline-offset-1 focus:outline focus:outline-2 focus:-outline-offset-2 sm:text-sm/6"
+      class="block w-full rounded-md bg-white px-3 py-1.5 text-base outline outline-1 -outline-offset-1 focus:outline focus:outline-2 focus:outline-black focus:-outline-offset-2 sm:text-sm/6"
       placeholder={input.placeholder ? input.placeholder : ""}
     />
   </div>

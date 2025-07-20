@@ -6,6 +6,9 @@ interface AppState {
     selectedNote?: main.DirEntry | null;
     notifications: Notification[];
     modal?: Modal | null;
+    bold: boolean;
+    italic: boolean;
+    underline: boolean;
 }
 
 export const appState: AppState = $state({
@@ -13,5 +16,9 @@ export const appState: AppState = $state({
     mdContent: ``,
     selectedNote: null,
     notifications: [],
-    modal: null
+    modal: null,
+    // State for message passing
+    bold: false,
+    italic: false,
+    underline: false,
 })

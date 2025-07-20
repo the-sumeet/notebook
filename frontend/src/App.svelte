@@ -13,7 +13,7 @@
 
   let newNoteName = "";
   let newFolderName = "";
-  let refreshFiles:boolean = $state(false);
+  let refreshFiles: boolean = $state(false);
 
   function showDeleteNoteModal() {
     if (!appState.selectedNote) {
@@ -39,7 +39,6 @@
             appState.selectedNote = null; // Clear the selected note after deletion
             appState.modal = null; // Close the modal after deletion
             refreshFiles = !refreshFiles; // Trigger a refresh of the sidebar
-
           })
           .catch((error) => {
             console.error("Error deleting note:", error);
@@ -56,7 +55,9 @@
         value: "",
         label: "Note Title",
         type: "text",
-        onupdate: (value: string) => {newNoteName = value;},
+        onupdate: (value: string) => {
+          newNoteName = value;
+        },
         validator: (value: string) => {
           if (value.length < 3) {
             return "Title must be at least 3 characters long.";
@@ -125,7 +126,7 @@
 <div class="flex h-screen">
   <div class="min-w-48 w-2/12 max-w-64 overflow-y-scroll">
     {#key refreshFiles}
-    <Sidebar />
+      <Sidebar />
     {/key}
   </div>
 

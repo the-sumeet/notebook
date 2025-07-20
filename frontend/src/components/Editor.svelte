@@ -5,6 +5,7 @@
     import { onMount, onDestroy } from "svelte";
     import { appState } from "../state.svelte";
     import app from "../../src/main";
+    import { getContext } from "svelte";
 
     let theme = "github";
     let mode = "markdown";
@@ -12,6 +13,52 @@
 
     let editor: ace.Editor;
     let editorElement: HTMLElement;
+
+    function bold() {
+        if (editor) {
+            const selectedText = editor.getSelectedText();
+            const selection = editor.getSelectionRange();
+
+            if (selectedText) {
+                editor.session.replace(selection, `**${selectedText}**`);
+            }
+        }
+    }
+
+    function italic() {
+        if (editor) {
+            const selectedText = editor.getSelectedText();
+            const selection = editor.getSelectionRange();
+
+            if (selectedText) {
+                editor.session.replace(selection, `*${selectedText}*`);
+            }
+        }
+    }
+
+    function underline() {
+        if (editor) {
+            const selectedText = editor.getSelectedText();
+            const selection = editor.getSelectionRange();
+
+            if (selectedText) {
+                editor.session.replace(selection, `<ins>${selectedText}<ins>`);
+            }
+        }
+    }
+
+    $effect(() => {
+        if (appState.bold && editor) {
+            bold();
+            appState.bold = false;
+        } else if (appState.italic && editor) {
+            italic();
+            appState.italic = false;
+        } else if (appState.underline && editor) {
+            underline();
+            appState.underline = false;
+        }
+    });
 
     $effect(() => {
         if (appState.selectedNote != null) {

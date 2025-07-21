@@ -21,6 +21,7 @@ type DirEntry struct {
 type ReturnValue struct {
 	DirEntries   []DirEntry
 	SelectedNote DirEntry
+	Bool         bool
 	Error        string
 }
 
@@ -253,4 +254,12 @@ func (a *App) NewFolder(name string) ReturnValue {
 	}
 
 	return ReturnValue{}
+}
+
+func (a *App) IsNotesDir() ReturnValue {
+	fmt.Println("Current Directory:", a.CurrentDir, a.config.NotesDir)
+	return ReturnValue{
+		Bool: a.CurrentDir == a.config.NotesDir,
+	}
+
 }

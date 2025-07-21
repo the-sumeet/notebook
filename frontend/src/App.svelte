@@ -8,7 +8,6 @@
   import { getSelectedNote } from "./utils";
   import Notification from "./components/Notification.svelte";
   import Modal from "./components/Modal.svelte";
-  import app from "./main";
   import { DeleteNoteFile, NewFolder, NewNote } from "../wailsjs/go/main/App";
 
   let newNoteName = "";

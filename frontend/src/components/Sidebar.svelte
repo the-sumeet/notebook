@@ -11,8 +11,10 @@
     import { main } from "../../wailsjs/go/models";
     import { appState } from "../../src/state.svelte";
     import { selectNote } from "../../src/utils";
+    import { IsNotesDir } from "../../wailsjs/go/main/App";
 
     let files: main.DirEntry[] = $state([]);
+    let currentIsNotesDir: boolean = $state(false);
 
     function goBack() {
         GoBack().then((result) => {
@@ -21,20 +23,25 @@
                     id: Date.now().toString(),
                     type: "warning",
                     title: result.Error,
-                    time: 1
+                    time: 1,
                 });
                 return;
             }
 
             fetchFiles();
+            IsNotesDir().then((result) => {
+                currentIsNotesDir = result.Bool;
+            });
         });
     }
 
     function selectDir(dirName: string) {
-        console.log("Selecting directory: ", dirName);
         SelectDir(dirName).then(async (data) => {
             if (appState.selectedNote && !appState.selectedNote.IsDir) {
-                console.log("Saving current note before changing directory", appState.selectedNote);
+                console.log(
+                    "Saving current note before changing directory",
+                    appState.selectedNote,
+                );
                 const res = await SaveFileContent(
                     appState.selectedNote.Name,
                     appState.mdContent,
@@ -45,9 +52,11 @@
                 }
             }
             fetchFiles();
+            IsNotesDir().then((result) => {
+                currentIsNotesDir = result.Bool;
+            });
         });
     }
-
 
     function fetchFiles() {
         GetFiles().then((data) => {
@@ -61,17 +70,25 @@
 
     onMount(() => {
         fetchFiles();
+
+        IsNotesDir().then((result) => {
+            currentIsNotesDir = result.Bool;
+        });
     });
 </script>
 
 <div class="h-full flex flex-col">
-    <div class="flex-1 flex flex-col gap-4 bg-darker p-4 text-light ">
+    <div class="flex-1 flex flex-col gap-4 bg-darker p-4 text-light">
         <!-- Back button -->
-        <button
-            onclick={goBack}
-            class="flex justify-start items-center gap-2 text-start mt-4  hover:cursor-pointer"
-            ><p class="flex-1 break-all text-primary hover:text-lighter">..</p></button
-        >
+        {#if !currentIsNotesDir}
+            <button
+                onclick={goBack}
+                class="flex justify-start items-center gap-2 text-start mt-4 hover:cursor-pointer"
+                ><p class="flex-1 break-all text-primary hover:text-lighter">
+                    ..
+                </p></button
+            >
+        {/if}
 
         {#each files as file}
             <button
@@ -99,7 +116,9 @@
                         />
                     </svg>
                 {/if}
-                <p class="flex-1 break-all text-primary hover:text-lighter">{file.Name}</p>
+                <p class="flex-1 break-all text-primary hover:text-lighter">
+                    {file.Name}
+                </p>
             </button>
         {/each}
     </div>

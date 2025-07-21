@@ -30,7 +30,6 @@ func applicationMenu(deleteNote func(), newNote func(), newFolder func()) *menu.
 	})
 
 	FileMenu.AddText("Save", keys.CmdOrCtrl("s"), func(_ *menu.CallbackData) {
-		newFolder()
 	})
 
 	FileMenu.AddText("New note", keys.CmdOrCtrl("n"), func(_ *menu.CallbackData) {

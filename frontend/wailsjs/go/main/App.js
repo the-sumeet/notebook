@@ -22,6 +22,10 @@ export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
 
+export function IsNotesDir() {
+  return window['go']['main']['App']['IsNotesDir']();
+}
+
 export function NewFolder(arg1) {
   return window['go']['main']['App']['NewFolder'](arg1);
 }

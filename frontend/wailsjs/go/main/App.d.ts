@@ -13,6 +13,8 @@ export function GoBack():Promise<main.ReturnValue>;
 
 export function Greet(arg1:string):Promise<string>;
 
+export function IsNotesDir():Promise<main.ReturnValue>;
+
 export function NewFolder(arg1:string):Promise<main.ReturnValue>;
 
 export function NewNote(arg1:string):Promise<main.ReturnValue>;

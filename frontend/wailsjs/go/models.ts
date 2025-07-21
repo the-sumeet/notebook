@@ -21,6 +21,7 @@ export namespace main {
 	export class ReturnValue {
 	    DirEntries: DirEntry[];
 	    SelectedNote: DirEntry;
+	    Bool: boolean;
 	    Error: string;
 	
 	    static createFrom(source: any = {}) {
@@ -31,6 +32,7 @@ export namespace main {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.DirEntries = this.convertValues(source["DirEntries"], DirEntry);
 	        this.SelectedNote = this.convertValues(source["SelectedNote"], DirEntry);
+	        this.Bool = source["Bool"];
 	        this.Error = source["Error"];
 	    }
 	
